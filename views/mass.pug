@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        <style> .field {float: left; width: 20%; height: 200px} .sub {clear: left}</style>
+        title Document
+    body
+        h1=error
+        h2 Mass Routine
+        p 
+            | If this is your first time, select the exercises and then determine your one rep max or max number of repetitions for bodyweight movements. 
+            br
+            |If you're working with exercises you've entered in before, and you wish to use previous rep maxes, simply select the names and a start date
+        p
+            | The exercises below are organized into "push", "pull", and "legs". 
+            br
+            | For this routine, it is recommended you choose the standard bench press, weighted pull-up*, and the barbell squat,  
+            br
+            | but variations of them can be chosen, if you have special reason to do so. 
+            br
+            | *must be able to perform 12 bodyweight pull-ups, otherwise choose a barbell row exercise. 
+            br
+            | To determine your one rep max, warm up and add weight to the bar until you reach a weight you can only do 3-10 reps of with proper form. 
+            br
+            | If you're doing a bodyweight exercise, choose one you can do more than 12 reps with and do as many reps as you can and enter that. 
+            br
+            |The app will automatically calculate your percentages for the routine. 
+
+        form(action="/MassRoutine", method="post" style={'width': '80%'})
+            
+            fieldset.field
+                legend Push Exercise
+                label(for="push exercises") Choose One
+                br
+                select(id="push exercise" name="push")
+                    option(value="Bench Press") Bench Press
+                    option(value="Incline Bench") Incline Bench
+                    option(value="Decline Bench") Decline Bench
+                    option(value="Body Weight Push Ups") Push Ups
+                 
+                p
+                    label(for='weight lifted-push') Weight Lifted
+                    br
+                    input(type="number", id="weight lifted-push", name="weight lifted-push")
+                p
+                    label(for='reps-push') Reps
+                    br
+                    input(type="number", id='reps-push' name='reps-push')
+                    br
+                p
+                    //- label(for='bw reps-push') Total Reps(if bodyweight exercise)
+                    //- br
+                    //- input(type="number", id="bw reps-push", name="bw reps-push")
+                br
+                 
+            fieldset.field
+                legend Pull Exercise
+                label(for="pull exercises") Choose One
+                br
+                select(id="pull exercise" name="pull")
+                    option(value="Weighted Pull Ups") Weighted Pull Ups
+                    option(value="Weighted Chin Ups") Weighted Chin Ups
+                    option(value="Barbell Row") Barbell Row
+                    option(value="Chest Supported Row") Chest Supported Row
+                    option(value="Inverted Row") Inverted Row
+                    option(value="T Bar Row") T Bar Row
+                    option(value="Body Weight Pull Ups") Pull Ups
+                    option(value="Body Weight Chin Ups") Chin Ups
+                 
+                p
+                    label(for='weight lifted-pull') Weight Lifted
+                    br
+                    input(type="number", id="weight lifted-pull", name="weight lifted-pull")
+                p
+                    label(for='reps-pull') Reps
+                    br
+                    input(type="number", id='reps-pull' name='reps-pull')
+                br
+            fieldset.field
+                legend Leg Exercise
+                label(for="leg exercise") Choose One
+                br
+                select(id="leg exercise" name="legs")
+                    option(value="High Bar Squat") High Bar Squat
+                    option(value="Front Squat") Front Squat
+                    option(value="Low Bar Squat") Low Bar Squat
+                    option(value="Leg Press") Leg Press
+                    option(value="Box Squat") Box Squt
+                    option(value="Smith Machine Squat") Smith Machine Squat
+                 
+                p
+                    label(for='weight lifted-legs') Weight Lifted
+                    br
+                    input(type="number", id="weight lifted-legs", name="weight lifted-legs")
+                p
+                    label(for='reps-legs') Reps
+                    br
+                    input(type="number", id='reps-legs' name='reps-legs')
+                    br
+                p
+                br
+
+            fieldset.field
+                legend Deadlift
+                label(for="dl") 
+                br
+                select(id="deadlift" name="dl")
+                    option(value="deadlift") Deadlift
+                    option(value="sumo") Sumo Deadlift
+                    option(value="trap") Trap Bar Deadlift
+                 
+                p
+                    label(for='weight lifted-dl') Weight Lifted
+                    br
+                    input(type="number", id="weight lifted-dl", name="weight lifted-dl")
+                p
+                    label(for='reps-dl') Reps
+                    br
+                    input(type="number", id='reps-dl' name='reps-dl')
+                br  
+            fieldset
+                legend Date
+                label(for='date') Start Date
+                br
+                | Please Enter Date
+                br
+                input(type="date", id='date' name='date')
+                br 
+            div.sub        
+                input(type='submit' value='Submit' ) 
+            br
+            br
+            a(href="/auth/profile" class="btn btn-secondary") Return to Profile

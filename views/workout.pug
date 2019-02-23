@@ -1,0 +1,96 @@
+extends layout
+block content
+
+    h1 Today's Workout
+    h3=error
+    if todaysWorkout === 0
+        | You've already completed today's workout
+        a(href="/auth/profile" class="btn btn-primary") Return to Profile
+    else if todaysWorkout !== 0 && todaysWorkout !== null
+        if todaysWorkout.wrkoutNum <= 4
+            | Week 1 
+        else if todaysWorkout.wrkoutNum > 3 && todaysWorkout.wrkoutNum <=7
+            | Week 2
+        else    
+            | Week 3
+        br  
+        br
+        form(action="/currentWorkout", method="post")
+            input(type="hidden" value=todaysWorkout.dateOfWorkout name="date")
+           
+            if todaysWorkout.wrkoutNum === 11
+                p.text-center
+                    | Congratulations! You've reached the end of your current routine. You have the option of increasing your
+                    | rep max for weighted exercises. Select how much to add to your rep max below. Choose 10lbs if 
+                    | the weights felt light, 5lb if it was challenging but doable, or select 0lbs to keep the weight the same if you struggled.
+            each exercise in todaysWorkout.workout
+                fieldset(name=exercise.name.replace(/\s/gi, ""))
+                    legend #{exercise.name}
+                    label(for="exercise name")
+                    input(type="hidden" id="exercise name" value=exercise.name name="lift") 
+                    
+                    | Weight to be lifted: 
+                    //- - let x = exercise.prescribedWeightOrReps.toString().replace("<", "");
+                    input(type="hidden" value=exercise.prescribedWeightOrReps name="weightOrReps")
+                    span= exercise.prescribedWeightOrReps
+                    br
+                    | Reps <span>#{exercise.reps}</span>
+                    | Sets <span>#{exercise.reps}</span>
+                    br
+                    br
+                    div(id=exercise.name.replace(/\s/gi, ""))
+                    //- <button onclick="addSet()">Click Me</button>
+
+                    if todaysWorkout.wrkoutNum === 11
+                        | Amount to increase rep max for this exericse?
+                        br
+                        select(id="add" name="increment")
+                            option(value=10) 10 lbs
+                            option(value=5) 5 lbs
+                            option(value=0) 0 lbs
+                    br
+                    br
+                    <button type="button" onclick="addSet('#{exercise.name}')">Add Set</button>
+                br
+         
+            if(todaysWorkout.wrkoutNum === 3 || todaysWorkout.wrkoutNum === 7 || todaysWorkout.wrkoutNum === 11)
+                label(for="repeatWeek") Didn't complete all the workouts this week? You may repeat them by checking the box below
+                br
+                input(type="checkbox" value="yes" id="repeatWeek" name="repeatWeek")
+                //- br
+                //- input(type="radio" id="repeatWeek" name="repeatWeek" value="no") 
+                //- | No
+            br
+            button.btn.btn-primary(type='submit') Submit
+        //- a(href="/repeatWeek" class="btn btn-info") Repeat this week?
+    else
+        | No Workout Today
+        br
+        a(href="/auth/profile" class="btn btn-primary") Return to Profile
+          
+        
+  
+    script.
+        let i = 1;
+        let previous = "";
+        let exerciseCount = {};
+
+        function addSet(name){
+            if(!exerciseCount[name]){
+                exerciseCount[name] = 1;
+            }
+            let formattedName = name.replace(/\s/gi, "");
+         
+         
+            let set = `
+            <label for="setNum"/> Set ${exerciseCount[name]}
+            <input type="hidden" value=${exerciseCount[name]} name="sets">
+            <label for="reps performed"/> Reps
+            <input type="number"  name="reps"><br></br>`;
+            
+            
+            $(`#${formattedName}`).append(set);
+            exerciseCount[name]++;
+            previous = formattedName;
+        }
+        

@@ -1,0 +1,254 @@
+[
+    {
+    "wrkoutNum": 0,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 150
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 165
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 315
+    }
+    },
+    "dateOfWorkout": "2019-02-14T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 1,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 150
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 165
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 315
+    }
+    },
+    "dateOfWorkout": "2019-02-16T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 2,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 150
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 165
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 315
+    }
+    },
+    "dateOfWorkout": "2019-02-18T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 3,
+    "workout": {
+    "exercise4": {
+    "name": "deadlift",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 165
+    }
+    },
+    "dateOfWorkout": "2019-02-19T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 4,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 170
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 190
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 365
+    }
+    },
+    "dateOfWorkout": "2019-02-21T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 5,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 170
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 190
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 365
+    }
+    },
+    "dateOfWorkout": "2019-02-23T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 6,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 170
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 190
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 365
+    }
+    },
+    "dateOfWorkout": "2019-02-25T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 7,
+    "workout": {
+    "exercise4": {
+    "name": "deadlift",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 190
+    }
+    },
+    "dateOfWorkout": "2019-02-26T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 8,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 195
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 215
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 410
+    }
+    },
+    "dateOfWorkout": "2019-02-28T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 9,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 195
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 215
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 410
+    }
+    },
+    "dateOfWorkout": "2019-03-02T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 10,
+    "workout": {
+    "exercise1": {
+    "name": "Bench Press",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 195
+    },
+    "exercise2": {
+    "name": "Weighted Pull Ups",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 215
+    },
+    "exercise3": {
+    "name": "High Bar Squat",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 410
+    }
+    },
+    "dateOfWorkout": "2019-03-04T06:00:00.000Z"
+    },
+    {
+    "wrkoutNum": 11,
+    "wrkout": {
+    "exercise4": {
+    "name": "deadlift",
+    "reps": 0,
+    "sets": 0,
+    "prescribedWeightOrReps": 215
+    }
+    },
+    "dateOfWorkout": "2019-03-05T06:00:00.000Z"
+    }
+    ]

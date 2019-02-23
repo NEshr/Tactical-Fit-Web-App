@@ -1,0 +1,29 @@
+extends layout
+block content
+    body
+        h1 Welcome #{username}
+        h3=successSched 
+        h3=successInc
+        h3=errorMessage
+        
+        p   
+            if(routine)
+                h4 Current Routine: #{routine}     
+                p Want to Choose another <a href="/selectRoutine">Routine?</a>)
+            else
+                h4 Current Routine: None
+                p No Routine Selected. Please choose a <a href="/selectRoutine">routine</a>
+            
+        p
+            if(workout)
+                h4 Today is Workout Day
+                br
+                | Go to <a href='/currentWorkout'>Workout</a>
+            else if workout === undefined
+                | You've completed the workout for today!
+            else
+                h4 No workout is scheduled for today. 
+                | To do a conditioning or aerobic exercise, click here.
+        a(href="/auth/logout" class="btn btn-danger") Logout
+        
+                
