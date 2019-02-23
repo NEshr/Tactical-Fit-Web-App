@@ -82,7 +82,7 @@ router.get('/MassRoutine', async (req, res) => {
     
 
     req.user.Exercises.forEach(element => console.log(element));
-    res.render('Mass', req.flash());
+    res.render('mass', req.flash());
 })
 
 router.post('/MassRoutine', async (req, res) => {
@@ -112,7 +112,7 @@ router.post('/MassRoutine', async (req, res) => {
         user.routine.name = "Mass Routine";
         user.routine.block = massRoutine;
         await user.save();
-
+        console.log('this ran');
         res.json(user.routine);
 
     }
