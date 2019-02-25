@@ -79,7 +79,7 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
             routine.push({
                 wrkoutNum: i,
                 workout: {
-                    exercise4: { name: dlEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesDlEx[k] },
+                    exercise4: { name: dlEx.name, reps: 6, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
                     
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
@@ -93,7 +93,7 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
             routine.push({
                 wrkoutNum: i,
                 workout: {
-                    exercise4: { name: dlEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesDlEx[k] },
+                    exercise4: { name: dlEx.name, reps: 5, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
                     
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
@@ -107,7 +107,7 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
             routine.push({
                 wrkoutNum: i,
                 wrkout: {
-                    exercise4: { name: dlEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesDlEx[k] },
+                    exercise4: { name: dlEx.name, reps: 4, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
                     
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
@@ -117,9 +117,9 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
         routine.push({
             wrkoutNum: i,
             workout: {
-                exercise1: { name: pushEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesPushEx[k] },
-                exercise2: { name: pullEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesPullEx[k] },
-                exercise3: { name: legsEx.name, reps: 0, sets: 0, prescribedWeightOrReps: percentagesLegsEx[k] },
+                exercise1: { name: pushEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesPushEx[k] },
+                exercise2: { name: pullEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesPullEx[k] },
+                exercise3: { name: legsEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesLegsEx[k] },
                 
             },
             dateOfWorkout: routineSchedule.all[i].toDate()
