@@ -181,7 +181,21 @@ router.post('/currentWorkout', async (req, res) => { // dont forget to put funct
    
 });
 
+router.get('/exerciseHistory', (req, res)=>{
+    
+        res.render('exerciseHistory',{exercises: req.user.Exercises});
+});
+router.post('/exerciseHistory', async (req,res)=>{
+    let user = await User.findById(req.user._id);
+    
+    let exercise = user.Exercises.find((element)=>{
+        
+        return element.name == req.body.exercises;
+    });
+    console.log(exercise);
 
+    res.render('exerciseHistory', {selectedExercise: exercise.repMaxHistory});
+});
 // router.get('/repeatWeek', async (req, res) => {
 //     try{
 //     let user = await User.findById(req.user._id);

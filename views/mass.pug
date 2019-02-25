@@ -5,7 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         <style> .field {float: left; width: 20%; height: 200px} .sub {clear: left}</style>
-        title Document
+        title Mass Routine
     body
         h1=error
         h2 Mass Routine
@@ -28,9 +28,9 @@ html(lang="en")
             br
             |The app will automatically calculate your percentages for the routine. 
 
-        form(action="/MassRoutine", method="post" style={'width': '80%'})
+        form(action="/MassRoutine", method="post")
             
-            fieldset.field
+            fieldset
                 legend Push Exercise
                 label(for="push exercises") Choose One
                 br
@@ -55,7 +55,7 @@ html(lang="en")
                     //- input(type="number", id="bw reps-push", name="bw reps-push")
                 br
                  
-            fieldset.field
+            fieldset
                 legend Pull Exercise
                 label(for="pull exercises") Choose One
                 br
@@ -78,7 +78,7 @@ html(lang="en")
                     br
                     input(type="number", id='reps-pull' name='reps-pull')
                 br
-            fieldset.field
+            fieldset
                 legend Leg Exercise
                 label(for="leg exercise") Choose One
                 br
@@ -102,14 +102,14 @@ html(lang="en")
                 p
                 br
 
-            fieldset.field
+            fieldset
                 legend Deadlift
                 label(for="dl") 
                 br
                 select(id="deadlift" name="dl")
-                    option(value="deadlift") Deadlift
-                    option(value="sumo") Sumo Deadlift
-                    option(value="trap") Trap Bar Deadlift
+                    option(value="Deadlift") Deadlift
+                    option(value="Sumo-Deadlift") Sumo Deadlift
+                    option(value="Trap-Bar Deadlift") Trap Bar Deadlift
                  
                 p
                     label(for='weight lifted-dl') Weight Lifted
@@ -128,7 +128,7 @@ html(lang="en")
                 br
                 input(type="date", id='date' name='date')
                 br 
-            div.sub        
+            div        
                 input(type='submit' value='Submit' ) 
             br
             br

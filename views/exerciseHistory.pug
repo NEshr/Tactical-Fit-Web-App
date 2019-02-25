@@ -1,0 +1,29 @@
+extends layout
+block content
+    body
+        if selectedExercise
+            table.table.table-striped.table-bordered
+                thead.thead-dark
+                    tr(scope='row')
+                        th(scope="col") Rep Max
+                        th(scope="col") Date Entered
+                tbody
+                    each session in selectedExercise
+                        tr(scope='row')
+                            td(scope='col') #{session.max}
+                            td(scope='col') #{session.date}
+        else
+            form(action='/exerciseHistory' method="post")
+                label(for="exercises") Choose One
+                br
+                select(id="exercises" name="exercises")
+                    each exercise in exercises
+                        option(value=exercise.name) #{exercise.name}
+                br
+                br
+                input(type='submit' value='Submit') 
+            br
+
+                    
+        a(href="/auth/profile" class="btn btn-secondary") Return to Profile
+            //add get-password link in login
