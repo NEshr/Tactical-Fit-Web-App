@@ -14,6 +14,15 @@ mongodb.createEventListeners();
 mongodb.connect();
 
 app.set('view engine', 'pug');
+app.use( function(req, res, next) {
+
+    if (req.originalUrl && req.originalUrl.split('/').pop().includes('favicon') === 'favicon.ico') {
+      return res.sendStatus(204);
+    }
+  
+    return next();
+  
+  });
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 passport.use(User.createStrategy());
