@@ -11,7 +11,7 @@ async function getPassword(email, token){
       text: `To reset your password, click or copy the link below 
       into your browser. If you did not request to reset your password, 
       just ignore this email, and your password will stay the same`,
-      html: `http://localhost:3001/resetPass/${token}`,
+      html: (process.env.PORT) ? `https://tacticalfit.herokuapp.com/${token}`: `http://localhost:3001/resetPass/${token}`,
     };
     sgMail.send(msg);
 }

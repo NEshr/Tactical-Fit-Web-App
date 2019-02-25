@@ -24,8 +24,12 @@ router.get('/getPassword', async (req, res) =>{
 router.post('/getPassword', async (req, res)=>{
     
     try{
+    
     uid = await uidgen.generate();
     let user = await User.findOne({email: req.body.email});
+    if(!user){
+        throw  new Error("Error: Email not found in database");
+    }
     user.resetPasswordToken = uid;
     await user.save();
     
@@ -35,7 +39,8 @@ router.post('/getPassword', async (req, res)=>{
     res.redirect('/auth/login');
     }
     catch(error){
-        console.log("ERROR: " +error.message);
+        req.flash('error', error.message);
+        res.render('getPassword', {error: req.flash('error')});
     }
 });
 

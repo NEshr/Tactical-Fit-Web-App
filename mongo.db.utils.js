@@ -12,7 +12,7 @@ function createEventListeners(){
 }
 
 function connect(){
-    let mongoUrl = process.env.MYAPP_MONGO_URL || "mongodb://localhost/customer-app";
+    let mongoUrl = process.env.MYAPP_MONGO_URL || "mongodb://localhost/FitWebApp";
     
     mongoose.connect(mongoUrl, { useNewUrlParser: true});
 }
