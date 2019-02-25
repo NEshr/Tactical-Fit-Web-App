@@ -17,64 +17,64 @@ router.get('/addExercise', (req, res) => {
     res.render('addExercise');
 });
 
-router.get('/getPassword', async (req, res) =>{
+router.get('/getPassword', async (req, res) => {
     res.render('getPassword');
 });
 
-router.post('/getPassword', async (req, res)=>{
-    
-    try{
-    
-    uid = await uidgen.generate();
-    let user = await User.findOne({email: req.body.email});
-    if(!user){
-        throw  new Error("Error: Email not found in database");
+router.post('/getPassword', async (req, res) => {
+
+    try {
+
+        uid = await uidgen.generate();
+        let user = await User.findOne({ email: req.body.email });
+        if (!user) {
+            throw new Error("Error: Email not found in database");
+        }
+        user.resetPasswordToken = uid;
+        await user.save();
+
+        await mailer(user.email, user.resetPasswordToken);
+
+        req.flash('success', 'Email Sent');
+        res.redirect('/auth/login');
     }
-    user.resetPasswordToken = uid;
-    await user.save();
-    
-    await mailer(user.email, user.resetPasswordToken);
-    
-    req.flash('success', 'Email Sent');
-    res.redirect('/auth/login');
-    }
-    catch(error){
+    catch (error) {
         req.flash('error', error.message);
-        res.render('getPassword', {error: req.flash('error')});
+        res.render('getPassword', { error: req.flash('error') });
     }
 });
 
-router.get('/resetPass/:uid/:email', async (req, res)=>{
-    try{
-        let user = await User.findOne({resetPasswordToken: req.params.uid});
-        
-        if(user){
-            res.render('resetPass',{email: user.email});
+router.get('/resetPass/:uid', async (req, res) => {
+    try {
+        let user = await User.findOne({ resetPasswordToken: req.params.uid });
+
+        if (user) {
+            res.render('resetPass', { email: user.email });
         }
-        else{
+        else {
             res.redirect('/auth/login');
         }
     }
-    catch(error){
+    catch (error) {
         console.log(error.message);
     }
 });
 
-router.post('/resetPass', async (req, res)=>{
-    try{
-        let user = await User.findOne({email: req.body.email});
+router.post('/resetPass', async (req, res) => {
+    try {
+        let user = await User.findOne({ email: req.body.email });
         user.resetPasswordToken = undefined;
-    
-       
+
+
         await user.setPassword(req.body.password);
         await user.save();
-       
+
         req.flash('success', 'Password Reset');
         res.redirect('/auth/login');
-        }
-        catch(error){
-            console.log(error.message);
-        }
+    }
+    catch (error) {
+        console.log(error.message);
+    }
 });
 
 router.use('/', authController.isLoggedIn);
@@ -84,7 +84,7 @@ router.get('/selectRoutine', async (req, res) => {
 });
 
 router.get('/MassRoutine', async (req, res) => {
-    
+
 
     req.user.Exercises.forEach(element => console.log(element));
     res.render('mass', req.flash());
@@ -129,77 +129,77 @@ router.post('/MassRoutine', async (req, res) => {
 
 
 router.get('/currentWorkout', (req, res) => {
-    try{
-        let todaysWorkout= schedule.workoutOfTheDay(req.user);
+    try {
+        let todaysWorkout = schedule.workoutOfTheDay(req.user);
         let wrkoutExistsInDB;
-        if(todaysWorkout !== null){
-            wrkoutExistsInDB = req.user.workouts.findIndex(workout=> 
+        if (todaysWorkout !== null) {
+            wrkoutExistsInDB = req.user.workouts.findIndex(workout =>
                 moment(workout['date']).isSame(moment(), 'day'));
         }
-    
-        if( wrkoutExistsInDB === -1) {
-        todaysWorkout = schedule.workoutOfTheDay(req.user);
-        todaysWorkout.wrkoutNum = 11;
+
+        if (wrkoutExistsInDB === -1) {
+            todaysWorkout = schedule.workoutOfTheDay(req.user);
+            todaysWorkout.wrkoutNum = 11;
         }
-        else if(wrkoutExistsInDB > -1) {
+        else if (wrkoutExistsInDB > -1) {
             todaysWorkout = 0;
         }
-        else{                                                                      
+        else {
             todaysWorkout = null;
         }
-                                                                                                                                     
+
         res.render('workout', { todaysWorkout, error: req.flash('error') });
     }
-    catch(error){
+    catch (error) {
         req.flash('error', error.message);
         res.redirect('/auth/profile');
     }
 });
 
 router.post('/currentWorkout', async (req, res) => { // dont forget to put functionality for repeat week
-    try{
-    let user = await User.findById(req.user._id);
-    let workout = formatWorkout(req.body);
-    user.workouts.push(workout);
-    if(req.body.increment){
-        let i = 0;
-        for(let lift of req.body.lift){
-            let index = user.Exercises.findIndex((exercise)=> exercise.name === lift);
-            let exercise = user.Exercises[index].repMaxHistory;
-            exercise.push[{date: moment().toDate(), max: Number(exercise[exercise.length-1].max) + Number(req.body.increment[i])}];
-            i++;
+    try {
+        let user = await User.findById(req.user._id);
+        let workout = formatWorkout(req.body);
+        user.workouts.push(workout);
+        if (req.body.increment) {
+            let i = 0;
+            for (let lift of req.body.lift) {
+                let index = user.Exercises.findIndex((exercise) => exercise.name === lift);
+                let exercise = user.Exercises[index].repMaxHistory;
+                exercise.push[{ date: moment().toDate(), max: Number(exercise[exercise.length - 1].max) + Number(req.body.increment[i]) }];
+                i++;
+            }
+            req.flash('successInc', "Rep Max Updated!")
         }
-        req.flash('successInc', "Rep Max Updated!")
+        if (req.body.repeatWeek === 'yes') {
+            schedule.repeatWeek(user.routine.block);
+
+            req.flash('successSched', "Schedule Updated!");
+        }
+        await user.save();
+        res.redirect('/auth/profile');
     }
-    if(req.body.repeatWeek === 'yes'){
-        schedule.repeatWeek(user.routine.block);
-        
-        req.flash('successSched', "Schedule Updated!");
-    }
-    await user.save();
-    res.redirect('/auth/profile');
-    }
-    catch(error){
+    catch (error) {
         req.flash('error', error.message);
         res.redirect('/currentWorkout');
     }
-   
+
 });
 
-router.get('/exerciseHistory', (req, res)=>{
-    
-        res.render('exerciseHistory',{exercises: req.user.Exercises});
+router.get('/exerciseHistory', (req, res) => {
+
+    res.render('exerciseHistory', { exercises: req.user.Exercises });
 });
-router.post('/exerciseHistory', async (req,res)=>{
+router.post('/exerciseHistory', async (req, res) => {
     let user = await User.findById(req.user._id);
-    
-    let exercise = user.Exercises.find((element)=>{
-        
+
+    let exercise = user.Exercises.find((element) => {
+
         return element.name == req.body.exercises;
     });
     console.log(exercise);
 
-    res.render('exerciseHistory', {selectedExercise: exercise.repMaxHistory});
+    res.render('exerciseHistory', { selectedExercise: exercise.repMaxHistory });
 });
 // router.get('/repeatWeek', async (req, res) => {
 //     try{

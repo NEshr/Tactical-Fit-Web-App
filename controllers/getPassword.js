@@ -6,7 +6,7 @@ async function getPassword(email, token){
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
       to: email,
-      from: 'help@fitwebapp.com',
+      from: 'help@tacticalfit.herokuapp.com',
       subject: 'Password Reset-Tactical Barbell',
       text: `To reset your password, click or copy the link below 
       into your browser. If you did not request to reset your password, 
