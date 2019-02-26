@@ -6,6 +6,7 @@ let User = require('../models/userModel');
 let authController = require('../controllers/authControllers');
 let schedule = require('../controllers/schedule');
 let moment = require('moment');
+let momentTz = require('moment-timezone');
 let formatWorkout = require('../controllers/formatWorkout');
 let mailer = require('../controllers/getPassword');
 const UIDGenerator = require('uid-generator');
@@ -100,7 +101,7 @@ router.post('/MassRoutine', async (req, res) => {
 
         let startDate = req.body.date;
         console.log(moment(startDate).utc().format('L'));
-        console.log(moment(new Date()));
+        console.log(momentTz.tz.guess());
         if (moment(startDate).isBefore(moment(), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
