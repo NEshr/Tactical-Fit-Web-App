@@ -133,7 +133,7 @@ router.get('/currentWorkout', (req, res) => {
         let wrkoutExistsInDB;
         if (todaysWorkout !== null) {
             wrkoutExistsInDB = req.user.workouts.findIndex(workout =>
-                moment(workout['date']).isSame(MomentTz.tz(req.user.timezone), 'day'));
+                moment(workout['date']).isSame(momentTz.tz(req.user.timezone), 'day'));
         }
 
         if (wrkoutExistsInDB === -1) {
