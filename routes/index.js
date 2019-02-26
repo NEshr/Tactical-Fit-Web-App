@@ -85,7 +85,7 @@ router.get('/selectRoutine', async (req, res) => {
 });
 
 router.get('/MassRoutine', async (req, res) => {
-    res.render('mass', req.flash());
+    res.render('mass', {timezone: momentTz.tz.names(), error: req.flash('error')});
 })
 
 router.post('/MassRoutine', async (req, res) => {
@@ -100,13 +100,15 @@ router.post('/MassRoutine', async (req, res) => {
         }
 
         let startDate = req.body.date;
+        let user = await User.findById(req.user._id);
+        user.timezone = req.body.timezone;
         console.log(moment(startDate).utc().format('L'));
-        console.log(momentTz(startDate).tz.guess(true));
+        console.log(momentTz.tz(req.body.timezone).format('L'));
         if (moment(startDate).isBefore(moment(), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
 
-        let user = await User.findById(req.user._id);
+
 
         let push = user.Exercises.find((exercise) => { return exercise.name === req.body.push });
         let pull = user.Exercises.find((exercise) => { return exercise.name === req.body.pull });

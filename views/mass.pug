@@ -128,6 +128,12 @@ html(lang="en")
                 br
                 input(type="date", id='date' name='date')
                 br 
+                label(for="timezone") Timezone
+                br
+                select(id="timezone" name="timezone")
+                    each zone in timezone
+                        option(value=zone) #{zone}
+            br        
             div        
                 input(type='submit' value='Submit' ) 
             br

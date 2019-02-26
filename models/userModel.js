@@ -6,17 +6,16 @@ const userSchema = mongoose.Schema({
     email: String,
     name: String,
     resetPasswordToken: String,
-
+    timezone: String,
     bodyweight: [{ date: Date, bw: Number }],
     Exercises: [
         {
             name: String,
             repMaxHistory: [{ date: Date, max: Number }],
-            // maxRepsHistory: [{ date: Date, maxReps: Number}],
+           
             
         }],
     routine: {name:String, block: [{}]},
-    conditioning:[{name: String, date: Date, distance: Number, time: Number, weight: Number}],
     workouts: [{}]
 });
 
