@@ -16,7 +16,7 @@ mongodb.connect();
 app.set('view engine', 'pug');
 app.use( function(req, res, next) {
 
-    if (req.originalUrl && req.originalUrl.split('/').pop().includes('favicon') === 'favicon.ico') {
+    if (req.originalUrl && req.originalUrl.split('/').includes('favicon') === 'favicon.ico') {
       return res.sendStatus(204);
     }
   
@@ -50,7 +50,9 @@ app.use(function(err, req, res, next){
 });
 
 app.listen(process.env.PORT || 3001, ()=>{
+    
     console.log('listening...');
+    console.log(process.env.PORT);
 });
 
 
