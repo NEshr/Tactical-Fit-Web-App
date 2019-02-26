@@ -84,9 +84,6 @@ router.get('/selectRoutine', async (req, res) => {
 });
 
 router.get('/MassRoutine', async (req, res) => {
-
-
-    req.user.Exercises.forEach(element => console.log(element));
     res.render('mass', req.flash());
 })
 
@@ -102,6 +99,8 @@ router.post('/MassRoutine', async (req, res) => {
         }
 
         let startDate = req.body.date;
+        console.log(moment(startDate).format('L'));
+        console.log(moment().format('L'));
         if (moment(startDate).isBefore(moment(), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
