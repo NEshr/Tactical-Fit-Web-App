@@ -12,7 +12,7 @@ let mailer = require('../controllers/getPassword');
 const UIDGenerator = require('uid-generator');
 const uidgen = new UIDGenerator();
 let uid;
-window.moment = require('moment-timezone');
+
 
 router.get('/addExercise', (req, res) => {
     res.render('addExercise');
