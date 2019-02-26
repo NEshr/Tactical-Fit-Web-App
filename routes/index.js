@@ -104,11 +104,9 @@ router.post('/MassRoutine', async (req, res) => {
         user.timezone = req.body.timezone;
         console.log(moment(startDate).utc().format('L'));
         console.log(momentTz.tz(req.body.timezone).format('L'));
-        if (moment(startDate).isBefore(moment(), 'day')) {
+        if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
-
-
 
         let push = user.Exercises.find((exercise) => { return exercise.name === req.body.push });
         let pull = user.Exercises.find((exercise) => { return exercise.name === req.body.pull });
@@ -136,7 +134,7 @@ router.get('/currentWorkout', (req, res) => {
         let wrkoutExistsInDB;
         if (todaysWorkout !== null) {
             wrkoutExistsInDB = req.user.workouts.findIndex(workout =>
-                moment(workout['date']).isSame(moment(), 'day'));
+                moment(workout['date']).isSame(momentTz.tz(req.user.timezone), 'day'));
         }
 
         if (wrkoutExistsInDB === -1) {
@@ -168,7 +166,7 @@ router.post('/currentWorkout', async (req, res) => { // dont forget to put funct
             for (let lift of req.body.lift) {
                 let index = user.Exercises.findIndex((exercise) => exercise.name === lift);
                 let exercise = user.Exercises[index].repMaxHistory;
-                exercise.push[{ date: moment().toDate(), max: Number(exercise[exercise.length - 1].max) + Number(req.body.increment[i]) }];
+                exercise.push[{ date: momentTz.tz(req.user.timezone).toDate(), max: Number(exercise[exercise.length - 1].max) + Number(req.body.increment[i]) }];
                 i++;
             }
             req.flash('successInc', "Rep Max Updated!")
