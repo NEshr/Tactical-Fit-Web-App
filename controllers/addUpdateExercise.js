@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const repMax = require('./1RepMaxPercentages');
 const momentTz = require('moment-timezone');
+const moment = require('moment');
 
 async function addExercise(user, name, weight, reps) {
     //finds the index within the exercise array in user document if present. Returns -1 if not
