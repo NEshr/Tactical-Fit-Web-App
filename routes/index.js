@@ -101,7 +101,7 @@ router.post('/MassRoutine', async (req, res) => {
 
         let startDate = req.body.date;
         console.log(moment(startDate).utc().format('L'));
-        console.log(window.moment.tz.guess());
+        console.log(moment.utc().format('L'));
         if (moment(startDate).isBefore(moment(), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
@@ -117,7 +117,7 @@ router.post('/MassRoutine', async (req, res) => {
         user.routine.name = "Mass Routine";
         user.routine.block = massRoutine;
         await user.save();
-        console.log('this ran');
+        
         res.json(user.routine);
 
     }
