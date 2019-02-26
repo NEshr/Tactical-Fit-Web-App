@@ -1,18 +1,18 @@
 const User = require('../models/userModel');
 const repMax = require('./1RepMaxPercentages');
-const moment = require('moment');
+const momentTz = require('moment-timezone');
 
 async function addExercise(user, name, weight, reps) {
     //finds the index within the exercise array in user document if present. Returns -1 if not
     let existingExerciseIndex = user.Exercises.findIndex((exercise) => { return exercise.name === name });
-    let dateAdded = moment();
+    let dateAdded = momentTz.tz(user.timezone);
     //tests if bodyweight(as opposed to weighted) reps were performed
     if (weight !== "" && weight !== undefined) {
         
         //test to see if exercise already exists in user database
         if (existingExerciseIndex !== -1) {
             //finds index of repMaxHistory array within exercise object if available. Returns -1 if not.
-            let existingWorkoutIndex = user.Exercises[existingExerciseIndex].repMaxHistory.findIndex((session) => { return moment(session.date).isSame(moment(), 'day') });
+            let existingWorkoutIndex = user.Exercises[existingExerciseIndex].repMaxHistory.findIndex((session) => { return moment(session.date).isSame(momentTz.tz(user.timezone), 'day') });
             // test to see if data for this workout session alraedy exists, implying user is attempting to update existing data
             if (existingWorkoutIndex !== -1) {
                 user.Exercises[existingExerciseIndex].repMaxHistory[existingWorkoutIndex].max = repMax.calculate1RM(weight,reps);
@@ -32,7 +32,7 @@ async function addExercise(user, name, weight, reps) {
         //again checks to see if exercise already exists in db
         if (existingExerciseIndex !== -1) {
 
-            let existingWorkoutIndexRepMax = user.Exercises[existingExerciseIndex].repMaxHistory.findIndex((session) => { return moment(session.date).isSame(moment(), 'day') });
+            let existingWorkoutIndexRepMax = user.Exercises[existingExerciseIndex].repMaxHistory.findIndex((session) => { return moment(session.date).isSame(momentTz.tz(user.timezone), 'day') });
 
             //if workout session already exists, update info, otherwise push new workout session into repMaxHistory array
             if(existingWorkoutIndexRepMax !== -1){

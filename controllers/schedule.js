@@ -1,4 +1,5 @@
 let moment = require('moment');
+let momentTz = require('moment-timezone');
 let mongoose = require('mongoose');
 let User = require('../models/userModel');
 
@@ -29,30 +30,10 @@ function setWorkoutSchedule(firstDay) { //firstDay will be a date in format MM/D
 
 }
 
-// function isTodayaWorkoutDay(routineSchedule) {
-
-//     let workoutWeeks = Object.values(routineSchedule);
-//     let dateToday = moment();
-//     console.log(dateToday.utcOffset());
-
-//     for (let i = 0; i < workoutWeeks.length; i++) {
-//         let workoutWk = workoutWeeks[i];
-
-//         for (let k = 0; k < workoutWk.length; k++) {
-//             let workoutDay = workoutWk[k];
-//             if (dateToday.isSame(workoutDay, 'day')) {
-//                 return console.log('today is a workoutday');
-//             }
-//         }
-
-//     }
-
-//     return console.log('today is not a workout day');
-// }
 function workoutOfTheDay(user) {
 
     for (let i = 0; i < user.routine.block.length; i++) {
-        if (moment(user.routine.block[i].dateOfWorkout).isSame(moment(), 'day')) {
+        if (moment(user.routine.block[i].dateOfWorkout).isSame(momentTz.tz(user.timezone), 'day')) {
             return user.routine.block[i];
         }
     }
@@ -60,8 +41,8 @@ function workoutOfTheDay(user) {
 }
 
 
-function repeatWeek(routine) {
-    let today = moment();
+function repeatWeek(routine, timezone) {
+    let today = momentTz.tz(timezone);
     let workout = routine.find((workout) => { return moment(workout["dateOfWorkout"]).isAfter(today, 'day') });
     let workoutIndex = 6;
     // workout.wrkoutNum - 1;

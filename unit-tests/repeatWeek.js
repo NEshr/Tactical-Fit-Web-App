@@ -1,7 +1,7 @@
 const moment = require('moment');
-
+const momentTz = require('moment-timezone');
 function repeatWeek(routine) {
-    let today = moment();
+    let today = momentTz.tz("US/Central");
     let workout = routine.find((workout) => { return moment(workout["dateOfWorkout"]).isAfter(today, 'day') });
     let workoutIndex = 6;
     // workout.wrkoutNum - 1;

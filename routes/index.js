@@ -102,8 +102,7 @@ router.post('/MassRoutine', async (req, res) => {
         let startDate = req.body.date;
         let user = await User.findById(req.user._id);
         user.timezone = req.body.timezone;
-        console.log(moment(startDate).utc().format('L'));
-        console.log(momentTz.tz(req.body.timezone).format('L'));
+
         if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
@@ -134,7 +133,7 @@ router.get('/currentWorkout', (req, res) => {
         let wrkoutExistsInDB;
         if (todaysWorkout !== null) {
             wrkoutExistsInDB = req.user.workouts.findIndex(workout =>
-                moment(workout['date']).isSame(momentTz.tz(req.user.timezone), 'day'));
+                moment(workout['date']).isSame(MomentTz.tz(req.user.timezone), 'day'));
         }
 
         if (wrkoutExistsInDB === -1) {
@@ -172,7 +171,7 @@ router.post('/currentWorkout', async (req, res) => { // dont forget to put funct
             req.flash('successInc', "Rep Max Updated!")
         }
         if (req.body.repeatWeek === 'yes') {
-            schedule.repeatWeek(user.routine.block);
+            schedule.repeatWeek(user.routine.block, user.timezone);
 
             req.flash('successSched', "Schedule Updated!");
         }
