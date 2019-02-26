@@ -85,7 +85,7 @@ router.get('/selectRoutine', async (req, res) => {
 });
 
 router.get('/MassRoutine', async (req, res) => {
-    res.render('mass', {timezone: momentTz.tz.names(), error: req.flash('error')});
+    res.render('mass', { timezone: momentTz.tz.names(), error: req.flash('error') });
 })
 
 router.post('/MassRoutine', async (req, res) => {
@@ -116,7 +116,7 @@ router.post('/MassRoutine', async (req, res) => {
         user.routine.name = "Mass Routine";
         user.routine.block = massRoutine;
         await user.save();
-        
+
         res.json(user.routine);
 
     }
@@ -193,12 +193,10 @@ router.post('/exerciseHistory', async (req, res) => {
     let user = await User.findById(req.user._id);
 
     let exercise = user.Exercises.find((element) => {
-
-        return element.name == req.body.exercises;
+        return element.name === req.body.exercises;
     });
-    console.log(exercise);
 
-    res.render('exerciseHistory', { selectedExercise: exercise.repMaxHistory });
+    res.render('exerciseHistory', { selectedExercise: exercise.repMaxHistory, moment: require('moment') });
 });
 // router.get('/repeatWeek', async (req, res) => {
 //     try{

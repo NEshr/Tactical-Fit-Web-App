@@ -16,7 +16,7 @@ mongodb.connect();
 app.set('view engine', 'pug');
 app.use( function(req, res, next) {
 
-    if (req.originalUrl && req.originalUrl.split('/').includes('favicon') === 'favicon.ico') {
+    if (req.originalUrl === 'favicon.ico' || req.originalUrl.split('/').includes('favicon')  ) {
       return res.sendStatus(204);
     }
   

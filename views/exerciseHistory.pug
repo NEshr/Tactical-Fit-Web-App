@@ -11,7 +11,7 @@ block content
                     each session in selectedExercise
                         tr(scope='row')
                             td(scope='col') #{session.max}
-                            td(scope='col') #{session.date}
+                            td(scope='col') #{moment(session.date).format('LL')}
         else
             form(action='/exerciseHistory' method="post")
                 label(for="exercises") Choose One
