@@ -101,7 +101,7 @@ router.post('/MassRoutine', async (req, res) => {
 
         let startDate = req.body.date;
         console.log(moment(startDate).utc().format('L'));
-        console.log(moment.utc().format('L'));
+        console.log(momentTz.tz.guess(startDate));
         if (moment(startDate).isBefore(moment(), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
