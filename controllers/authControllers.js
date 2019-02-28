@@ -81,5 +81,5 @@ exports.profileForm = (req, res) => {
        else{
            workout = undefined;
        }
-    res.render("profile", { username: req.user.name, routine: req.user.routine.name, workout: workout, successSched: req.flash('successSched'), successInc: req.flash('successInc'), errorMessage: req.flash('error')});
+    res.render("profile", { username: req.user.name, routine: req.user.routine.name, workout: workout, successSched: req.flash('successSched'), successInc: req.flash('successInc'), errorMessage: req.flash('error'), successRoutine: req.flash('successRoutine')});
 };

@@ -7,6 +7,10 @@ const passport = require('passport');
 const app = express();
 const User = require('./models/userModel');
 const flash = require('connect-flash');
+var favicon = require('serve-favicon')
+var path = require('path')
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 
 
@@ -39,6 +43,7 @@ app.use(passport.session());
 app.get('/', (req, res)=>{
     res.render('home');
 });
+
 app.use('/auth', authRoutes);
 app.use('/', routes);
 

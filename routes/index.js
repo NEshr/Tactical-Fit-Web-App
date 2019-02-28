@@ -116,8 +116,8 @@ router.post('/MassRoutine', async (req, res) => {
         user.routine.name = "Mass Routine";
         user.routine.block = massRoutine;
         await user.save();
-
-        res.json(user.routine);
+        req.flash('successRoutine', "Successfully Created Routine!")
+        res.redirect('/auth/profile')
 
     }
     catch (error) {
