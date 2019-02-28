@@ -3,11 +3,11 @@ const repMax = require('./1RepMaxPercentages');
 const momentTz = require('moment-timezone');
 const moment = require('moment');
 
-async function addExercise(user, name, weight, reps) {
-    console.log(user.timezone);
+async function addExercise(user, name, weight, reps, timezone) {
+    
     //finds the index within the exercise array in user document if present. Returns -1 if not
     let existingExerciseIndex = user.Exercises.findIndex((exercise) => { return exercise.name === name });
-    let dateAdded = momentTz.tz(user.timezone);
+    let dateAdded = momentTz.tz(timezone);
     //tests if bodyweight(as opposed to weighted) reps were performed
     if (weight !== "" && weight !== undefined) {
         

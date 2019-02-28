@@ -95,14 +95,14 @@ router.post('/MassRoutine', async (req, res) => {
         //adds or updates exercises depending on if they already exist
         for (entry of array) {
             if (exercises["weight lifted-" + entry] !== "" && exercises["reps-" + entry] !== "" || exercises["weight lifted-" + entry] === "" && exercises["reps-" + entry] !== "") {
-                await addExercise(req.user, exercises[entry], exercises["weight lifted-" + entry], exercises["reps-" + entry]);
+                await addExercise(req.user, exercises[entry], exercises["weight lifted-" + entry], exercises["reps-" + entry], exercise.timezone);
             }
         }
 
         let startDate = req.body.date;
         let user = await User.findById(req.user._id);
         user.timezone = req.body.timezone;
-        console.log("moment comparison: " +moment(startDate).isBefore(momentTz.tz(req.body.timezone)));
+        console.log("moment comparison: " + moment(startDate).isBefore(momentTz.tz(req.body.timezone)));
         if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
