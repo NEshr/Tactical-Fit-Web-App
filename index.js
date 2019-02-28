@@ -12,9 +12,6 @@ var path = require('path')
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-
-
-
 mongodb.createEventListeners();
 mongodb.connect();
 
