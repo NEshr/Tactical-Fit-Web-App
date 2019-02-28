@@ -12,10 +12,10 @@ const userSchema = mongoose.Schema({
         {
             name: String,
             repMaxHistory: [{ date: Date, max: Number }],
-           
-            
+
+
         }],
-    routine: {name:String, block: [{}]},
+    routine: { name: String, block: [{}] },
     workouts: [{}]
 });
 

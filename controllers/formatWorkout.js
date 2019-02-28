@@ -1,23 +1,23 @@
 const moment = require('moment');
 
 function formatWorkout(wrkoutInfo) {
-    
+
     let exercises = wrkoutInfo.lift;
     let reps = wrkoutInfo.reps;
-    let sets= wrkoutInfo.sets;
+    let sets = wrkoutInfo.sets;
     let weightRepLog = wrkoutInfo["weightOrReps"];
-    
+
     let date = moment(wrkoutInfo.date).toDate();
     let workout = {};
     workout["date"] = date;
-    for (let i = 0; i< exercises.length; i++) {
-        workout[exercises[i]]= {"weightOrReps": weightRepLog[i]};
+    for (let i = 0; i < exercises.length; i++) {
+        workout[exercises[i]] = { "weightOrReps": weightRepLog[i] };
     }
     let i = 0;
     workout[exercises[i]]['sets'] = [];
     workout[exercises[i]]['sets'].push(reps[i]);
     for (let k = 1; k < sets.length; k++) {
-        
+
         if (sets[k] == 1) {
             i++;
             workout[exercises[i]]['sets'] = [];
@@ -26,13 +26,11 @@ function formatWorkout(wrkoutInfo) {
         else {
             workout[exercises[i]]['sets'].push(reps[k]);
         }
-        
+
     }
 
     return workout;
 }
-
-
 
 
 

@@ -11,7 +11,7 @@ function repeatWeek(routine) {
             if (workout.wrkoutNum > 3) {
                 workout.dateOfWorkout = moment(workout.dateOfWorkout).add(1, 'weeks').toDate();
             }
-        } 
+        }
     }
     else if (workoutIndex > 3 && workoutIndex <= 7) {
         for (let workout of routine) {
@@ -27,7 +27,7 @@ function repeatWeek(routine) {
             }
         }
     }
-} 
+}
 
 
-module.exports=repeatWeek;
+module.exports = repeatWeek;

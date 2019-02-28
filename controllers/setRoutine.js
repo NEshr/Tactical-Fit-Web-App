@@ -36,7 +36,7 @@ const User = require('../models/userModel');
 function setMassRoutine(push, pull, legs, dl, startDate) {
 
     let pushEx = { name: push.name, oneRepMax: push.repMaxHistory[push.repMaxHistory.length - 1].max };
-    
+
     let pullEx = { name: pull.name, oneRepMax: pull.repMaxHistory[pull.repMaxHistory.length - 1].max };
     let legsEx = { name: legs.name, oneRepMax: legs.repMaxHistory[legs.repMaxHistory.length - 1].max };
     let dlEx = { name: dl.name, oneRepMax: dl.repMaxHistory[dl.repMaxHistory.length - 1].max };
@@ -47,7 +47,7 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
     let formattedDate = startDate.split('-');
     let date = "" + formattedDate[1] + '/' + formattedDate[2] + '/' + formattedDate[0];
     let routineSchedule = schedule.setWorkoutSchedule(date);
-    
+
 
     let routine = [];
 
@@ -80,35 +80,35 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
                 wrkoutNum: i,
                 workout: {
                     exercise4: { name: dlEx.name, reps: 6, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
-                    
+
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
             });
             continue;
         }
         else if (i > 3 && i < 7) {
-            k=1;
+            k = 1;
         }
         else if (i === 7) {
             routine.push({
                 wrkoutNum: i,
                 workout: {
                     exercise4: { name: dlEx.name, reps: 5, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
-                    
+
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
             });
             continue;
         }
         else if (i > 7 && i < 11) {
-            k=2;
+            k = 2;
         }
         else if (i === 11) {
             routine.push({
                 wrkoutNum: i,
                 wrkout: {
                     exercise4: { name: dlEx.name, reps: 4, sets: 4, prescribedWeightOrReps: percentagesDlEx[k] },
-                    
+
                 },
                 dateOfWorkout: routineSchedule.all[i].toDate()
             });
@@ -120,7 +120,7 @@ function setMassRoutine(push, pull, legs, dl, startDate) {
                 exercise1: { name: pushEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesPushEx[k] },
                 exercise2: { name: pullEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesPullEx[k] },
                 exercise3: { name: legsEx.name, reps: 8, sets: 4, prescribedWeightOrReps: percentagesLegsEx[k] },
-                
+
             },
             dateOfWorkout: routineSchedule.all[i].toDate()
         });

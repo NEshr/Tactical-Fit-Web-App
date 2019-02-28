@@ -9,11 +9,6 @@ function setWorkoutSchedule(firstDay) { //firstDay will be a date in format MM/D
 
     let session1 = moment(firstDay, 'L');
 
-    // let todaysDate = moment();
-    // if (session1.isBefore(todaysDate, 'day')) {
-    //     return Error('error: please use a date that is on or after today');
-    // }
-
     let week1 = [session1, session1.clone().add(2, 'days'), session1.clone().add(4, 'days'), session1.clone().add(5, 'days')];
     let week2 = week1.map(session => session.clone().add(1, 'weeks'));
     let week3 = week2.map(session => session.clone().add(1, 'weeks'));
@@ -52,7 +47,7 @@ function repeatWeek(routine, timezone) {
             if (workout.wrkoutNum > 3) {
                 workout.dateOfWorkout = moment(workout.dateOfWorkout).add(1, 'weeks').toDate();
             }
-        } 
+        }
     }
     else if (workoutIndex > 3 && workoutIndex <= 7) {
         for (let workout of routine) {
@@ -68,7 +63,7 @@ function repeatWeek(routine, timezone) {
             }
         }
     }
-} 
+}
 
 
 

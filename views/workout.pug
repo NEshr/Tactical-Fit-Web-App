@@ -20,9 +20,7 @@ block content
            
             if todaysWorkout.wrkoutNum === 11
                 p.text-center
-                    | Congratulations! You've reached the end of your current routine. You have the option of increasing your
-                    | rep max for weighted exercises. Select how much to add to your rep max below. Choose 10lbs if 
-                    | the weights felt light, 5lb if it was challenging but doable, or select 0lbs to keep the weight the same if you struggled.
+                    | Congratulations! You've reached the end of your current routine.
             each exercise in todaysWorkout.workout
                 fieldset(name=exercise.name.replace(/\s/gi, ""))
                     legend #{exercise.name}
@@ -30,24 +28,22 @@ block content
                     input(type="hidden" id="exercise name" value=exercise.name name="lift") 
                     
                     | Weight to be lifted: 
-                    //- - let x = exercise.prescribedWeightOrReps.toString().replace("<", "");
                     input(type="hidden" value=exercise.prescribedWeightOrReps name="weightOrReps")
                     span= exercise.prescribedWeightOrReps
                     br
                     | Reps <span>#{exercise.reps}</span>
-                    | Sets <span>#{exercise.reps}</span>
+                    | Sets <span>#{exercise.sets}</span>
                     br
                     br
                     div(id=exercise.name.replace(/\s/gi, ""))
-                    //- <button onclick="addSet()">Click Me</button>
 
                     if todaysWorkout.wrkoutNum === 11
-                        | Amount to increase rep max for this exericse?
+                        | Amount to increase rep max for subsequent workouts? 
                         br
                         select(id="add" name="increment")
-                            option(value=10) 10 lbs
-                            option(value=5) 5 lbs
-                            option(value=0) 0 lbs
+                            option(value=10) Weights felt light add 10lbs
+                            option(value=5) Tough but doable - add 5 lbs
+                            option(value=0) Very difficult keep weight the same 
                     br
                     br
                     <button type="button" onclick="addSet('#{exercise.name}')">Add Set</button>
@@ -57,12 +53,9 @@ block content
                 label(for="repeatWeek") Didn't complete all the workouts this week? You may repeat them by checking the box below
                 br
                 input(type="checkbox" value="yes" id="repeatWeek" name="repeatWeek")
-                //- br
-                //- input(type="radio" id="repeatWeek" name="repeatWeek" value="no") 
-                //- | No
             br
             button.btn.btn-primary(type='submit') Submit
-        //- a(href="/repeatWeek" class="btn btn-info") Repeat this week?
+
     else
         | No Workout Today
         br

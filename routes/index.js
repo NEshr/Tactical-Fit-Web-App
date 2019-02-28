@@ -104,7 +104,7 @@ router.post('/MassRoutine', async (req, res) => {
         let startDate = req.body.date;
         let user = await User.findById(req.user._id);
         user.timezone = req.body.timezone;
-        
+
         if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
@@ -200,19 +200,7 @@ router.post('/exerciseHistory', async (req, res) => {
 
     res.render('exerciseHistory', { selectedExercise: exercise.repMaxHistory, moment: require('moment') });
 });
-// router.get('/repeatWeek', async (req, res) => {
-//     try{
-//     let user = await User.findById(req.user._id);
-//     schedule.repeatWeek(user.routine.block);
-//     await user.save();
-//     req.flash('successMessage', "Schedule Updated!");
-//     res.redirect('/auth/profile');
-//     }
-//     catch(error){
-//         req.flash('error', error.message);
-//         res.redirect('/currentWorkout');
-//     }
-// });
+
 
 
 module.exports = router;
