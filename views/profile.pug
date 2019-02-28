@@ -16,15 +16,18 @@ block content
                 p No Routine Selected. Please choose a <a href="/selectRoutine">routine</a>
             
         p
-            if(workout)
+            if workout
                 h4 Today is Workout Day
                 br
                 a(href='/currentWorkout' class="btn btn-light") Go To Workout
-            else if workout === undefined
+            else if workout === undefined 
                 | You've completed the workout for today!
+                if nextWorkout
+                    h4 Next workout: #{nextWorkout}
             else
-                h4 No workout is scheduled for today. 
-                | 
+                h5 No workout is scheduled for today. 
+                if nextWorkout
+                    h5 Next workout: #{nextWorkout}
         a(href="/exerciseHistory" class="btn btn-light") Exercise History
         br
         br
