@@ -102,7 +102,8 @@ router.post('/MassRoutine', async (req, res) => {
         let startDate = req.body.date;
         let user = await User.findById(req.user._id);
         user.timezone = req.body.timezone;
-
+        console.log(moment(startDate).format('LL'));
+        console.log(momentTz.tz(req.body.timezone).format('LL'));
         if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
