@@ -14,6 +14,7 @@ const uidgen = new UIDGenerator();
 let uid;
 
 
+
 router.get('/addExercise', (req, res) => {
     res.render('addExercise');
 });
@@ -90,6 +91,7 @@ router.get('/MassRoutine', async (req, res) => {
 
 router.post('/MassRoutine', async (req, res) => {
     try {
+        momentTz.tz.setDefault(req.body.timezone);
         let exercises = req.body;
         let array = ["push", "pull", "legs", "dl"];
         //adds or updates exercises depending on if they already exist
@@ -103,7 +105,7 @@ router.post('/MassRoutine', async (req, res) => {
         let user = await User.findById(req.user._id);
         user.timezone = req.body.timezone;
         
-        if (moment(startDate).isBefore(moment(momentTz.tz(req.body.timezone)), 'day')) {
+        if (moment(startDate).isBefore(momentTz.tz(req.body.timezone), 'day')) {
             throw new Error('Error: Please Choose a date that is on or after today');
         }
 
