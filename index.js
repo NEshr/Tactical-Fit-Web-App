@@ -18,15 +18,15 @@ mongodb.createEventListeners();
 mongodb.connect();
 
 app.set('view engine', 'pug');
-app.use( function(req, res, next) {
+// app.use( function(req, res, next) {
 
-    if (req.originalUrl === 'favicon.ico' || req.originalUrl.split('/').includes('favicon')  ) {
-      return res.sendStatus(204);
-    }
+//     if (req.originalUrl === 'favicon.ico' || req.originalUrl.split('/').includes('favicon')  ) {
+//       return res.sendStatus(204);
+//     }
   
-    return next();
+//     return next();
   
-  });
+//   });
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 passport.use(User.createStrategy());
