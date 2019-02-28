@@ -95,7 +95,7 @@ router.post('/MassRoutine', async (req, res) => {
         //adds or updates exercises depending on if they already exist
         for (entry of array) {
             if (exercises["weight lifted-" + entry] !== "" && exercises["reps-" + entry] !== "" || exercises["weight lifted-" + entry] === "" && exercises["reps-" + entry] !== "") {
-                await addExercise(req.user, exercises[entry], exercises["weight lifted-" + entry], exercises["reps-" + entry], exercise.timezone);
+                await addExercise(req.user, exercises[entry], exercises["weight lifted-" + entry], exercises["reps-" + entry], exercises.timezone);
             }
         }
 
