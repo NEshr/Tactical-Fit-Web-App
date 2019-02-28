@@ -11,7 +11,7 @@ var favicon = require('serve-favicon')
 var path = require('path')
 
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use('/', express.static('public'))
+app.use('/', express.static('public'))
 mongodb.createEventListeners();
 mongodb.connect();
 
