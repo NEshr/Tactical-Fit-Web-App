@@ -123,6 +123,7 @@ router.post('/MassRoutine', async (req, res) => {
 
     }
     catch (error) {
+        console.log(error);
         req.flash('error', error.message);
         res.redirect('/MassRoutine');
     }
@@ -166,9 +167,12 @@ router.post('/currentWorkout', async (req, res) => { // dont forget to put funct
             let i = 0;
             for (let lift of req.body.lift) {
                 let index = user.Exercises.findIndex((exercise) => exercise.name === lift);
-                let exercise = user.Exercises[index].repMaxHistory;
-                exercise.push[{ date: momentTz.tz(req.user.timezone).toDate(), max: Number(exercise[exercise.length - 1].max) + Number(req.body.increment[i]) }];
-                i++;
+                if(index !== -1){
+                    let exercise = user.Exercises[index].repMaxHistory;
+                    exercise.push[{ date: momentTz.tz(req.user.timezone).toDate(), max: Number(exercise[exercise.length - 1].max) + Number(req.body.increment[i]) }];
+                    i++;
+                }
+               
             }
             req.flash('successInc', "Rep Max Updated!")
         }
