@@ -42,7 +42,7 @@ exports.register = async (req, res, next) => {
     let { name, email, password } = req.body;
     let user = new User({
         name,
-        email,
+        email
 
     });
     try {
@@ -75,7 +75,7 @@ exports.registerForm = (req, res) => {
 exports.profileForm = (req, res) => {
     let workout;
     let dateOfNextWorkout;
-    if(req.user.routine){
+    if(req.user.routine.block.length !== 0){
         let workout = req.user.routine.block.find((workout)=>{ return moment(workout.dateOfWorkout).isAfter(moment(), 'day'); });
         dateOfNextWorkout = moment(workout.dateOfWorkout).format('LL');
 
