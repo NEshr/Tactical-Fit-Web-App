@@ -4,9 +4,11 @@ Capstone Project
 This is a fitness app based on a routine found in the series "Tactical Barbell(TB)". For those unfamiliar, a typical TB
 routine would feature workouts that look similar to the following, focusing on just two exercise to illustrate:
 
-Week 1: Mon, Fri: Bench 4x8 @ 70% of 1 Rep Max, Deadlift 4x5 @ 70% of 1 Rep Max      *1 Rep Max = Weight you can lift one time
-Week 2: Mon, Fri: Bench 4x6 @ 80% of 1 Rep Max, Deadlift 4x4 @ 80% of 1 Rep Max
-Week 3: Mon, Fri: Bench 4x4 @ 90% of 1 Rep Max, Deadlift 4x3 @ 90% of 1 Rep Max
+     Week 1: Mon, Fri: Bench 4x8 @ 70% of 1 Rep Max, Deadlift 4x5 @ 70% of 1 Rep Max      
+     Week 2: Mon, Fri: Bench 4x6 @ 80% of 1 Rep Max, Deadlift 4x4 @ 80% of 1 Rep Max
+     Week 3: Mon, Fri: Bench 4x4 @ 90% of 1 Rep Max, Deadlift 4x3 @ 90% of 1 Rep Max
+
+*1 Rep Max = Weight you can lift one time
 
 TB rotuines entail 3 or more exercises which can be at different set and rep schemes and where the weight to be lifted will
 change based on what week one is on in the routine. 
