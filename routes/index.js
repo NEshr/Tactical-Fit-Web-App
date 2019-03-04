@@ -113,7 +113,9 @@ router.post('/MassRoutine', async (req, res) => {
         let pull = user.Exercises.find((exercise) => { return exercise.name === req.body.pull });
         let legs = user.Exercises.find((exercise) => { return exercise.name === req.body.legs });
         let dl = user.Exercises.find((exercise) => { return exercise.name === req.body.dl });
-
+        if(!(push && pull && legs && dl)){
+            throw new Error ('Error: You must fill in every exercise');
+        }
         let massRoutine = setMassRoutine(push, pull, legs, dl, startDate);
         user.routine.name = "Mass Routine";
         user.routine.block = massRoutine;
