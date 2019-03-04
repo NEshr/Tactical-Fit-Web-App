@@ -19,9 +19,9 @@ As such, this app can do the following:
      Calculate your one rep max and all pertinent percentages
      Track your schedule, letting you know when your next workout day is.
      Tell you which exercises, weights, sets and reps you are to do on any given workout day
-     Allow you to progress by incrementing your rep max based on difficulty
-     Gives you the ability to repeat any given week of the routine in case you miss a workout or two
-     Lets you view the history of any exercise you've done to track the progress of your one rep max.
+     Allow you to progress by incrementing your one rep max based on difficulty
+     Give you the ability to repeat any given week in case you miss a workout or two
+     Let you view the history of any exercise you've done to track the progress of your one rep max.
 
 Also, since this is web app, the following features are also present:
              
