@@ -21,6 +21,8 @@ block content
             if todaysWorkout.wrkoutNum === 11
                 p.text-center
                     | Congratulations! You've reached the end of your current routine.
+                    h4 **This App is currently set to think it is on the last day of the routine in order to show certain date specific functionality**
+                    
             each exercise in todaysWorkout.workout
                 fieldset(name=exercise.name.replace(/\s/gi, ""))
                     legend #{exercise.name}
