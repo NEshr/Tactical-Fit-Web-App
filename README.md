@@ -24,8 +24,9 @@ As such, this app can do the following:
      Lets you view the history of any exercise you've done to track the progress of your one rep max.
 
 Also, since this is web app, the following features are also present:
-        Email and password authentication
-        Login verification
-        Ability to reset password via secure email link
+             
+     Email and password authentication
+     Login verification
+     Ability to reset password via secure email link
 
 
