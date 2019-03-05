@@ -37,7 +37,7 @@ router.post('/getPassword', async (req, res) => {
 
         await mailer(user.email, user.resetPasswordToken);
 
-        req.flash('success', 'Email Sent');
+        req.flash('success', 'Email Sent. Note: Email may be in spam folder');
         res.redirect('/auth/login');
     }
     catch (error) {
